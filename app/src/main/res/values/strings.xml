@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">CookBookApp</string>
     <string name="detail_button">Show recipe</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cookbook_name">Dish name</string>
+    <string name="cookbook_recipe">Ingredients and cooking method</string>
 </resources>
