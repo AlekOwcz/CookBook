@@ -26,11 +26,11 @@ class CookbookDetailFragment : Fragment() {
         super.onStart()
         val view = view
         if (view != null) {
-            val title = view.findViewById<View>(R.id.textTitle) as TextView
-            val cocktail: Dish = Dish.dishes.get(dishID.toInt())
-            title.setText(cocktail.getName())
-            val description = view.findViewById<View>(R.id.textDescription) as TextView
-            description.setText(cocktail.getRecipe())
+            val title = view.findViewById<TextView>(R.id.textTitle)
+            val dish: Dish = Dish.dishes[dishID.toInt()]
+            title.text = dish.getName()
+            val description = view.findViewById<TextView>(R.id.textDescription)
+            description.text = dish.getRecipe()
         }
     }
 }

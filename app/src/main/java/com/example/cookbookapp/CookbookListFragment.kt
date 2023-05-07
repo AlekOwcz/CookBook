@@ -1,6 +1,5 @@
 package com.example.cookbookapp
 
-import android.R
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -34,10 +33,11 @@ class CookbookListFragment : ListFragment() {
     ): View? {
         val names = arrayOfNulls<String>(Dish.dishes.size)
         for (i in names.indices) {
-            names[i] = Dish.dishes.get(i).getName()
+            names[i] = Dish.dishes[i].getName()
         }
-        val adapter: ArrayAdapter<String?> = ArrayAdapter<String?>(
-            inflater.context, R.layout.simple_list_item_1, names
+
+        val adapter = ArrayAdapter<String?>(
+            inflater.context, android.R.layout.simple_list_item_1, names
         )
         listAdapter = adapter
         return super.onCreateView(inflater, container, savedinstanceState)
