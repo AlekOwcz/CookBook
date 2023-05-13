@@ -3,6 +3,7 @@ package com.example.cookbookapp
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_FADE
@@ -18,7 +19,7 @@ class MainActivity : AppCompatActivity(), CookbookListFragment.Listener   {
         val fragmentContainer : View? = findViewById(R.id.fragment_container)
         if(fragmentContainer != null){
             val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
-            val details: CookbookDetailFragment = CookbookDetailFragment()
+            val details = CookbookDetailFragment()
             details.setDish(id)
             transaction.replace(R.id.fragment_container, details)
             transaction.setTransition(TRANSIT_FRAGMENT_FADE)
