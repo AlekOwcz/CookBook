@@ -7,4 +7,22 @@
     <string name="start">Start</string>
     <string name="stop">Stop</string>
     <string name="reset">Reset</string>
+    <string name="detail_activity_title">Detailed recipe</string>
+    <string name="main_activity_title">Recipe list</string>
+    <string name="action_title">Info</string>
+    <string name="action_share">Share</string>
+    <string name="title_top">Main fragment</string>
+    <string-array name="category1">
+        <item>Pozycja 1 Kat. 1</item>
+        <item>Pozycja 2 Kat. 1 </item>
+        <item>Pozycja 3 Kat. 1 </item>
+    </string-array>
+    <string-array name="category2">
+        <item>Kat. 2 Pozycja 1</item>
+        <item>Kat. 2 Pozycja 2</item>
+        <item>Kat. 2 Pozycja 3 </item>
+    </string-array>
+    <string name="home_tab">Start</string>
+    <string name="cat1_tab">Category 1</string>
+    <string name="cat2_tab">Category 2</string>
 </resources>

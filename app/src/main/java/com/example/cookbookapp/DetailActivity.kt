@@ -2,6 +2,7 @@ package com.example.cookbookapp
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 
 
 class DetailActivity : AppCompatActivity() {
@@ -18,5 +19,10 @@ class DetailActivity : AppCompatActivity() {
         if (dishID != null) {
             frag.setDish(dishID.toLong())
         }
+
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
     }
 }
