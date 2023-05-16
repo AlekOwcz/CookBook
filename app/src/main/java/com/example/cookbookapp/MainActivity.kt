@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity(), CookbookListFragment.Listener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val toolbar: Toolbar = findViewById<Toolbar>(R.id.toolbar)
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
         val viewPag: ViewPager2 = findViewById(R.id.pager)
@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity(), CookbookListFragment.Listener {
         menuInflater.inflate(R.menu.menu_main,menu)
         val shareItem = menu.findItem(R.id.action_share)
         shareActionProvider = MenuItemCompat.getActionProvider(shareItem) as ShareActionProvider
-        setShareActionIntent("Blablablablablla")
+        setShareActionIntent("Pien")
 
         return super.onCreateOptionsMenu(menu)
     }

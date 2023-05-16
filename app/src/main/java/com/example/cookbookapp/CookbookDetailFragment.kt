@@ -45,7 +45,7 @@ class CookbookDetailFragment : Fragment() {
         val view = view
         if (view != null) {
             val title = requireActivity().findViewById<Toolbar>(R.id.toolbar)
-            var dish: Dish? = null
+            val dish: Dish?
             if(dishType == 0) dish = Dish.pastaDishes[dishID.toInt()]
             else dish = Dish.nonPasta[dishID.toInt()]
             title.title = dish.getName().toString()

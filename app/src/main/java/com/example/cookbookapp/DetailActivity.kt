@@ -16,8 +16,8 @@ class DetailActivity : AppCompatActivity() {
         val frag: CookbookDetailFragment =
             supportFragmentManager.findFragmentById(R.id.detail_frag) as CookbookDetailFragment
 
-        val dishID = intent.extras?.getInt(DetailActivity.EXTRA_DISH_ID)
-        val dishType = intent.extras?.getInt(DetailActivity.EXTRA_DISH_TYPE)
+        val dishID = intent.extras?.getInt(EXTRA_DISH_ID)
+        val dishType = intent.extras?.getInt(EXTRA_DISH_TYPE)
 
         if (dishID != null && dishType != null) {
             frag.setDish(dishID.toLong(), dishType)
