@@ -6,14 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 
 
 class CookbookDetailFragment : Fragment() {
     private var dishID: Long = 0
-    fun setDish(id: Long) {
+    private var dishType: Int = 0
+
+    fun setDish(id: Long, type: Int) {
         this.dishID = id
+        this.dishType = type
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,9 +44,11 @@ class CookbookDetailFragment : Fragment() {
         super.onStart()
         val view = view
         if (view != null) {
-            val title = view.findViewById<TextView>(R.id.textTitle)
-            val dish: Dish = Dish.dishes[dishID.toInt()]
-            title.text = dish.getName()
+            val title = requireActivity().findViewById<Toolbar>(R.id.toolbar)
+            var dish: Dish? = null
+            if(dishType == 0) dish = Dish.pastaDishes[dishID.toInt()]
+            else dish = Dish.nonPasta[dishID.toInt()]
+            title.title = dish.getName().toString()
             val description = view.findViewById<TextView>(R.id.textDescription)
             description.text = dish.getRecipe()
         }

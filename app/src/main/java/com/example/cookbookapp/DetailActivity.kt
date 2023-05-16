@@ -8,6 +8,7 @@ import androidx.appcompat.widget.Toolbar
 class DetailActivity : AppCompatActivity() {
     companion object {
         const val EXTRA_DISH_ID = "id"
+        const val EXTRA_DISH_TYPE = "type"
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,11 +17,15 @@ class DetailActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.detail_frag) as CookbookDetailFragment
 
         val dishID = intent.extras?.getInt(DetailActivity.EXTRA_DISH_ID)
-        if (dishID != null) {
-            frag.setDish(dishID.toLong())
+        val dishType = intent.extras?.getInt(DetailActivity.EXTRA_DISH_TYPE)
+
+        if (dishID != null && dishType != null) {
+            frag.setDish(dishID.toLong(), dishType)
         }
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
+        toolbar.title = ""
+
         setSupportActionBar(toolbar)
 
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)

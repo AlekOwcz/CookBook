@@ -10,9 +10,9 @@ import android.widget.ListView
 import androidx.fragment.app.ListFragment
 
 
-class CookbookListFragment : ListFragment() {
+class CookbookListFragment(val dishType: Int = 0) : ListFragment() {
     interface Listener {
-        fun itemClicked(id: Long)
+        fun itemClicked(id: Long, type: Int)
     }
 
     private var listener: Listener? = null
@@ -23,7 +23,7 @@ class CookbookListFragment : ListFragment() {
     }
 
     override fun onListItemClick(listView: ListView, itemView: View, position: Int, id: Long) {
-        listener?.itemClicked(id)
+        listener?.itemClicked(id, dishType)
     }
 
     override fun onCreateView(
@@ -31,15 +31,28 @@ class CookbookListFragment : ListFragment() {
         container: ViewGroup?,
         savedinstanceState: Bundle?
     ): View? {
-        val names = arrayOfNulls<String>(Dish.dishes.size)
-        for (i in names.indices) {
-            names[i] = Dish.dishes[i].getName()
+        if (dishType == 0){
+            val names = arrayOfNulls<String>(Dish.pastaDishes.size)
+            for (i in names.indices) {
+                names[i] = Dish.pastaDishes[i].getName()
+            }
+
+            val adapter = ArrayAdapter<String?>(
+                inflater.context, android.R.layout.simple_list_item_1, names
+            )
+            listAdapter = adapter
+        } else {
+            val names = arrayOfNulls<String>(Dish.nonPasta.size)
+            for (i in names.indices) {
+                names[i] = Dish.nonPasta[i].getName()
+            }
+
+            val adapter = ArrayAdapter<String?>(
+                inflater.context, android.R.layout.simple_list_item_1, names
+            )
+            listAdapter = adapter
         }
 
-        val adapter = ArrayAdapter<String?>(
-            inflater.context, android.R.layout.simple_list_item_1, names
-        )
-        listAdapter = adapter
         return super.onCreateView(inflater, container, savedinstanceState)
     }
 

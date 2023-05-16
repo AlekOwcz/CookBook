@@ -11,7 +11,7 @@
     <string name="main_activity_title">Recipe list</string>
     <string name="action_title">Info</string>
     <string name="action_share">Share</string>
-    <string name="title_top">Main fragment</string>
+    <string name="title_top">Welcome to the best cookbook in the entire observable universe</string>
     <string-array name="category1">
         <item>Pozycja 1 Kat. 1</item>
         <item>Pozycja 2 Kat. 1 </item>
@@ -23,6 +23,10 @@
         <item>Kat. 2 Pozycja 3 </item>
     </string-array>
     <string name="home_tab">Start</string>
-    <string name="cat1_tab">Category 1</string>
-    <string name="cat2_tab">Category 2</string>
+    <string name="cat1_tab">Pasta dishes</string>
+    <string name="cat2_tab">Non-pasta</string>
+
+    <string name="top_header">Jakiś nagłówek</string>
+    <string name="top_image">Jakiś obrazek</string>
+    <string name="top_text">Jakieś kilkuzdaniowe bla bla bla.</string>
 </resources>

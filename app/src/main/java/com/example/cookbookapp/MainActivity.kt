@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity(), CookbookListFragment.Listener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         val toolbar: Toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 
@@ -31,8 +32,8 @@ class MainActivity : AppCompatActivity(), CookbookListFragment.Listener {
         val adapter = CookbookPagerAdapter(this)
 
         val topFrag = TopFragment()
-        val frag1 = Tab1Fragment()
-        val frag2 = Tab2Fragment()
+        val frag1 = CookbookListFragment(0)
+        val frag2 = CookbookListFragment(1)
 
         adapter.addFragment(topFrag)
         adapter.addFragment(frag1)
@@ -44,16 +45,17 @@ class MainActivity : AppCompatActivity(), CookbookListFragment.Listener {
 
         val tabLayout: TabLayout = findViewById(R.id.tabs)
         TabLayoutMediator(tabLayout, viewPag) { tab, position ->
-            tab.text = "Tab ${position + 1}"
+            tab.text = adapter.getTitle(position)
         }.attach()
     }
 
-    override fun itemClicked(id: Long) {
+    override fun itemClicked(id: Long, type: Int) {
         val fragmentContainer : View? = findViewById(R.id.fragment_container)
         if(fragmentContainer != null){
+            //todo fix tablet verison
             val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
             val details = CookbookDetailFragment()
-            details.setDish(id)
+            details.setDish(id, type)
             transaction.replace(R.id.fragment_container, details)
             transaction.setTransition(TRANSIT_FRAGMENT_FADE)
             transaction.addToBackStack(null)
@@ -61,6 +63,8 @@ class MainActivity : AppCompatActivity(), CookbookListFragment.Listener {
         } else {
             val intent = Intent(this, DetailActivity::class.java)
             intent.putExtra(DetailActivity.EXTRA_DISH_ID, id.toInt())
+            intent.putExtra(DetailActivity.EXTRA_DISH_TYPE, type)
+
             startActivity(intent)
         }
     }
