@@ -1,8 +1,11 @@
 package com.example.cookbookapp
 
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.google.android.material.snackbar.Snackbar
 
 
 class DetailActivity : AppCompatActivity() {
@@ -29,5 +32,16 @@ class DetailActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+    }
+
+    fun onClickDone(view: View) {
+        val text = "Ingredients sent!"
+        val duration = Snackbar.LENGTH_SHORT
+        val snackbar = Snackbar.make(findViewById(R.id.coordinator), text, duration)
+        snackbar.setAction("WAIT NO!") {
+            val toast = Toast.makeText(this, "Nevermind then!", Toast.LENGTH_SHORT)
+            toast.show()
+        }
+        snackbar.show()
     }
 }

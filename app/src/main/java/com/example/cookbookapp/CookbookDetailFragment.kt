@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
@@ -49,6 +50,11 @@ class CookbookDetailFragment : Fragment() {
             if(dishType == 0) dish = Dish.pastaDishes[dishID.toInt()]
             else dish = Dish.nonPasta[dishID.toInt()]
             title.title = dish.getName().toString()
+            val img_name = dish.getName().toString().lowercase().replace(' ','_')
+            val imgsrc = requireActivity().findViewById<ImageView>(R.id.dish_image)
+            val drawable = resources.getIdentifier(img_name,"drawable", requireContext().packageName)
+            if (drawable != 0) imgsrc.setImageResource(drawable)
+
             val description = view.findViewById<TextView>(R.id.textDescription)
             description.text = dish.getRecipe()
         }

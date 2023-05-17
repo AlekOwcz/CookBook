@@ -6,11 +6,27 @@
     tools:context=".TopFragment"
     android:orientation="vertical">
 
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/title_top"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
-
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_margin="10dp"
+        android:textAlignment="center"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/abc"
+        android:scaleType="fitXY"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="^ This is how you'll look after using our app"
+        android:layout_margin="10dp"/>
+</LinearLayout>
 </androidx.core.widget.NestedScrollView>
