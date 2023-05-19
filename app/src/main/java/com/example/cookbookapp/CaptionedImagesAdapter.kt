@@ -13,7 +13,13 @@ import androidx.recyclerview.widget.RecyclerView
 
 class CaptionedImagesAdapter(private val captions: Array<String>, private val imageIds: IntArray): RecyclerView.Adapter<CaptionedImagesAdapter.ViewHolder>() {
      class ViewHolder(cardView: CardView): RecyclerView.ViewHolder(cardView)
-
+     private var listener: Listener? = null
+     interface Listener {
+          fun onClick(position: Int)
+     }
+     public fun setListener(listener: Listener){
+          this.listener = listener
+     }
      override fun getItemCount(): Int {
           return captions.size
      }
@@ -32,5 +38,9 @@ class CaptionedImagesAdapter(private val captions: Array<String>, private val im
           imageView.contentDescription = captions[position]
           val textView: TextView = cardView.findViewById(R.id.info_text)
           textView.text = captions[position]
+
+          cardView.setOnClickListener {
+               listener?.onClick(position)
+          }
      }
 }

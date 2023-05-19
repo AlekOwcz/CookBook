@@ -16,6 +16,12 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
+
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        toolbar.title = ""
+        setSupportActionBar(toolbar)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
         val frag: CookbookDetailFragment =
             supportFragmentManager.findFragmentById(R.id.detail_frag) as CookbookDetailFragment
 
@@ -26,12 +32,7 @@ class DetailActivity : AppCompatActivity() {
             frag.setDish(dishID.toLong(), dishType)
         }
 
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        toolbar.title = ""
 
-        setSupportActionBar(toolbar)
-
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
     }
 
     fun onClickDone(view: View) {
