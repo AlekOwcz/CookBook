@@ -17,10 +17,10 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        toolbar.title = ""
-        setSupportActionBar(toolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+//        val toolbar: Toolbar = findViewById(R.id.toolbar)
+//        toolbar.title = ""
+//        setSupportActionBar(toolbar)
+//        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         val frag: CookbookDetailFragment =
             supportFragmentManager.findFragmentById(R.id.detail_frag) as CookbookDetailFragment
@@ -38,7 +38,7 @@ class DetailActivity : AppCompatActivity() {
     fun onClickDone(view: View) {
         val text = "Ingredients sent!"
         val duration = Snackbar.LENGTH_SHORT
-        val snackbar = Snackbar.make(findViewById(R.id.coordinator), text, duration)
+        val snackbar = Snackbar.make(findViewById(R.id.detail_frag), text, duration)
         snackbar.setAction("WAIT NO!") {
             val toast = Toast.makeText(this, "Nevermind then!", Toast.LENGTH_SHORT)
             toast.show()

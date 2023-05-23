@@ -9,16 +9,15 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.FragmentTransaction
-import androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_FADE
 import androidx.core.view.MenuItemCompat
 import androidx.appcompat.widget.ShareActionProvider
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 
-class MainActivity : AppCompatActivity(), CookbookListFragment.Listener {
+class MainActivity : AppCompatActivity() {
 
     private var shareActionProvider: ShareActionProvider? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,26 +48,6 @@ class MainActivity : AppCompatActivity(), CookbookListFragment.Listener {
         }.attach()
     }
 
-    override fun itemClicked(id: Long, type: Int) {
-        val fragmentContainer : View? = findViewById(R.id.fragment_container)
-        if(fragmentContainer != null){
-            //todo fix tablet verison
-            val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
-            val details = CookbookDetailFragment()
-            details.setDish(id, type)
-            transaction.replace(R.id.fragment_container, details)
-            transaction.setTransition(TRANSIT_FRAGMENT_FADE)
-            transaction.addToBackStack(null)
-            transaction.commit()
-        } else {
-            val intent = Intent(this, DetailActivity::class.java)
-            intent.putExtra(DetailActivity.EXTRA_DISH_ID, id.toInt())
-            intent.putExtra(DetailActivity.EXTRA_DISH_TYPE, type)
-
-            startActivity(intent)
-        }
-    }
-
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main,menu)
         val shareItem = menu.findItem(R.id.action_share)
@@ -86,7 +65,7 @@ class MainActivity : AppCompatActivity(), CookbookListFragment.Listener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
             R.id.action_info -> {
-                Toast.makeText(this, "Welcome to the greatest cooking book that has ever existed! Pick your favorite recipe and cook to your hearts desire!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Welcome to the greatest cooking book that has ever existed! Pick your favorite recipe and cook to your hearts desire!", Toast.LENGTH_LONG).show()
                 MediaPlayer.create(this, R.raw.alarm3).start()
                 return true
             }
@@ -94,7 +73,15 @@ class MainActivity : AppCompatActivity(), CookbookListFragment.Listener {
                 return super.onOptionsItemSelected(item)
             }
         }
-
-
+    }
+    fun onClickDone(view: View) {
+        val text = "Ingredients sent!"
+        val duration = Snackbar.LENGTH_SHORT
+        val snackbar = Snackbar.make(findViewById(R.id.fragment_container), text, duration)
+        snackbar.setAction("WAIT NO!") {
+            val toast = Toast.makeText(this, "Nevermind then!", Toast.LENGTH_SHORT)
+            toast.show()
+        }
+        snackbar.show()
     }
 }

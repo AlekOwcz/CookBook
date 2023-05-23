@@ -29,7 +29,4 @@ class CookbookPagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAd
         fragmentList.add(fragment)
     }
 
-    interface Titleable {
-        var title: CharSequence
-    }
 }

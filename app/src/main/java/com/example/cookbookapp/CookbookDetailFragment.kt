@@ -7,15 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import com.google.android.material.snackbar.Snackbar
 
 
 class CookbookDetailFragment : Fragment() {
     private var dishID: Long = 0
     private var dishType: Int = 0
-
+    private var toolbar: Toolbar? = null
     fun setDish(id: Long, type: Int) {
         this.dishID = id
         this.dishType = type
@@ -34,6 +37,7 @@ class CookbookDetailFragment : Fragment() {
             ft.commit()
         }
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -41,17 +45,29 @@ class CookbookDetailFragment : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_cookbook_detail, container, false)
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        toolbar = view.findViewById<Toolbar>(R.id.toolbar)
+        toolbar!!.title = ""
+        (activity as AppCompatActivity).setSupportActionBar(toolbar)
+        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
     override fun onStart() {
         super.onStart()
+        setUpData()
+    }
+    fun setUpData(){
         val view = view
         if (view != null) {
-            val title = requireActivity().findViewById<Toolbar>(R.id.toolbar)
             val dish: Dish?
             if(dishType == 0) dish = Dish.pastaDishes[dishID.toInt()]
             else dish = Dish.nonPasta[dishID.toInt()]
-            title.title = dish.getName().toString()
-            val img_name = dish.getName().toString().lowercase().replace(' ','_')
-            val imgsrc = requireActivity().findViewById<ImageView>(R.id.dish_image)
+            toolbar!!.title = dish.getName()
+            val img_name = dish.getName().lowercase().replace(' ','_')
+            val imgsrc = view.findViewById<ImageView>(R.id.dish_image)
+            imgsrc.setImageResource(0)
             val drawable = resources.getIdentifier(img_name,"drawable", requireContext().packageName)
             if (drawable != 0) imgsrc.setImageResource(drawable)
 
@@ -59,10 +75,18 @@ class CookbookDetailFragment : Fragment() {
             description.text = dish.getRecipe()
         }
     }
-
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putLong("dishId", dishID)
     }
-
+    fun onClickDone(view: View) {
+        val text = "Ingredients sent!"
+        val duration = Snackbar.LENGTH_SHORT
+        val snackbar = Snackbar.make(requireView().findViewById(R.id.coordinator), text, duration)
+        snackbar.setAction("WAIT NO!") {
+            val toast = Toast.makeText(context, "Nevermind then!", Toast.LENGTH_SHORT)
+            toast.show()
+        }
+        snackbar.show()
+    }
 }
