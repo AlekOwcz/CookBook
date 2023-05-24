@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/drawer_alarm"
+            android:icon="@android:drawable/ic_lock_idle_alarm"
+            android:title="@string/drawer_alarm" />
+        <item
+            android:id="@+id/drawer_call"
+            android:icon="@android:drawable/stat_sys_speakerphone"
+            android:title="@string/drawer_call" />
+        <item
+            android:id="@+id/drawer_more"
+            android:icon="@android:drawable/stat_sys_warning"
+            android:title="@string/drawer_hunger" />
+    </group>
+
+</menu>

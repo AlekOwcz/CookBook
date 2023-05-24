@@ -79,14 +79,5 @@ class CookbookDetailFragment : Fragment() {
         super.onSaveInstanceState(outState)
         outState.putLong("dishId", dishID)
     }
-    fun onClickDone(view: View) {
-        val text = "Ingredients sent!"
-        val duration = Snackbar.LENGTH_SHORT
-        val snackbar = Snackbar.make(requireView().findViewById(R.id.coordinator), text, duration)
-        snackbar.setAction("WAIT NO!") {
-            val toast = Toast.makeText(context, "Nevermind then!", Toast.LENGTH_SHORT)
-            toast.show()
-        }
-        snackbar.show()
-    }
+
 }
