@@ -17,8 +17,13 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 
-class CookbookListFragment(val dishType: Int = 0) : Fragment() {
-
+class CookbookListFragment(var dishType: Int = 0) : Fragment() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if(savedInstanceState != null){
+            dishType = savedInstanceState.getInt("listDishType")
+        }
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -90,6 +95,11 @@ class CookbookListFragment(val dishType: Int = 0) : Fragment() {
             })
         }
         return dishRecycler
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("listDishType", dishType)
     }
 
 }

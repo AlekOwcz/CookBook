@@ -19,7 +19,6 @@ import androidx.core.view.MenuItemCompat
 import androidx.appcompat.widget.ShareActionProvider
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
