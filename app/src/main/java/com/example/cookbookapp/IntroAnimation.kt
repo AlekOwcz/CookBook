@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 class IntroAnimation: AppCompatActivity() {
     companion object {
-        private const val DURATION: Long = 1800
+        private const val DURATION: Long = 1600
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,7 +45,7 @@ class IntroAnimation: AppCompatActivity() {
             }
         })
 
-        val rotateAnimation = ObjectAnimator.ofFloat(img, "rotation", 0f, 1800f)
+        val rotateAnimation = ObjectAnimator.ofFloat(img, "rotation", 0f, 3600f)
         rotateAnimation.duration = DURATION
         rotateAnimation.interpolator = LinearInterpolator()
 
