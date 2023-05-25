@@ -92,7 +92,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.drawer_more -> {
                 val imageView = ImageView(this)
-                imageView.setImageResource(R.drawable.fate)
+                imageView.setImageResource(R.drawable.howhungry)
 
                 val params = RelativeLayout.LayoutParams(
                     RelativeLayout.LayoutParams.WRAP_CONTENT,
